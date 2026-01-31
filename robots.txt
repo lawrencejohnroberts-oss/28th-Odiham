@@ -1,0 +1,33 @@
+User-agent: *
+Allow: /
+Disallow: /.well-known/
+Disallow: /admin/
+Disallow: /private/
+Disallow: /temp/
+Disallow: /backup/
+
+# Allow access to main content
+Allow: /index.html
+Allow: /safeguarding-policy.html
+Allow: /privacy-policy.html
+Allow: /styles.css
+Allow: /script.js
+
+# Sitemap location (when available)
+# Sitemap: https://28thodiham.org.uk/sitemap.xml
+
+# Crawl delay to be respectful
+Crawl-delay: 1
+
+# Block common vulnerability scanners
+User-agent: sqlmap
+Disallow: /
+
+User-agent: nikto
+Disallow: /
+
+User-agent: w3af
+Disallow: /
+
+User-agent: dirbuster
+Disallow: /
