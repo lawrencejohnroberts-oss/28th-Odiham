@@ -1,0 +1,26 @@
+Contact: mailto:matthew@derwenthillside.co.uk
+Contact: mailto:membership@28thodiham.org.uk
+Expires: 2027-01-30T23:59:59.000Z
+Encryption: https://keys.openpgp.org/search?q=matthew@derwenthillside.co.uk
+Preferred-Languages: en
+Canonical: https://28thodiham.org.uk/.well-known/security.txt
+Policy: https://28thodiham.org.uk/privacy-policy.html
+
+# Security Policy for 28th Odiham (Dogmersfield and Crondall) Scout Group
+# 
+# We take security seriously. If you discover a security vulnerability,
+# please report it responsibly by contacting us at the email addresses above.
+# 
+# Please include:
+# - Description of the vulnerability
+# - Steps to reproduce
+# - Potential impact
+# - Your contact information
+# 
+# We will acknowledge receipt within 48 hours and provide updates on our
+# investigation and remediation efforts.
+# 
+# Please do not publicly disclose the vulnerability until we have had
+# a chance to address it.
+# 
+# Thank you for helping keep our community safe.
