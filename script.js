@@ -80,10 +80,10 @@ membershipForm.addEventListener('submit', function(e) {
     for (let [key, value] of formData.entries()) {
         // Basic input sanitization
         if (typeof value === 'string') {
-            // Remove potentially dangerous characters
-            value = value.replace(/<script\b[^<]*(?:(?!<\/script>)<[^<]*)*<\/script>/gi, '');
-            value = value.replace(/javascript:/gi, '');
-            value = value.replace(/on\w+\s*=/gi, '');
+            // Escape angle brackets to prevent HTML injection when rendering
+            value = value.replace(/[<>]/g, function (ch) {
+                return ch === '<' ? '&lt;' : '&gt;';
+            });
             // Trim whitespace
             value = value.trim();
         }
