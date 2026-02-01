@@ -223,16 +223,36 @@ galleryItems.forEach(item => {
         // Create lightbox
         const lightbox = document.createElement('div');
         lightbox.className = 'lightbox';
-        lightbox.innerHTML = `
-            <div class="lightbox-content">
-                <span class="lightbox-close">&times;</span>
-                <img src="${img.src}" alt="${img.alt}" class="lightbox-image">
-                <div class="lightbox-caption">
-                    <h4>${overlay.querySelector('h4').textContent}</h4>
-                    <p>${overlay.querySelector('p').textContent}</p>
-                </div>
-            </div>
-        `;
+
+        const lightboxContent = document.createElement('div');
+        lightboxContent.className = 'lightbox-content';
+
+        const lightboxClose = document.createElement('span');
+        lightboxClose.className = 'lightbox-close';
+        lightboxClose.textContent = '\u00D7';
+
+        const lightboxImage = document.createElement('img');
+        lightboxImage.className = 'lightbox-image';
+        lightboxImage.src = img.src;
+        lightboxImage.alt = img.alt;
+
+        const lightboxCaption = document.createElement('div');
+        lightboxCaption.className = 'lightbox-caption';
+
+        const captionTitle = document.createElement('h4');
+        captionTitle.textContent = overlay.querySelector('h4').textContent;
+
+        const captionText = document.createElement('p');
+        captionText.textContent = overlay.querySelector('p').textContent;
+
+        lightboxCaption.appendChild(captionTitle);
+        lightboxCaption.appendChild(captionText);
+
+        lightboxContent.appendChild(lightboxClose);
+        lightboxContent.appendChild(lightboxImage);
+        lightboxContent.appendChild(lightboxCaption);
+
+        lightbox.appendChild(lightboxContent);
         
         // Add lightbox styles
         lightbox.style.cssText = `
