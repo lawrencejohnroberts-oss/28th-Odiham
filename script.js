@@ -62,6 +62,26 @@ if (membershipForm) {
 let lastSubmissionTime = 0;
 const SUBMISSION_COOLDOWN = 30000; // 30 seconds
 
+// Helper to sanitize potentially unsafe input
+function sanitizeInput(input) {
+    if (typeof input !== 'string') {
+        return input;
+    }
+
+    // Repeatedly remove <script>...</script> blocks until no more matches
+    let previous;
+    let current = input;
+    do {
+        previous = current;
+        current = current.replace(/<script\b[^<]*(?:(?!<\/script>)<[^<]*)*<\/script>/gi, '');
+    } while (current !== previous);
+
+    // Remove any remaining <script or </script fragments that could be reassembled
+    current = current.replace(/<\s*\/?\s*script\b/gi, '');
+
+    return current;
+}
+
 membershipForm.addEventListener('submit', function(e) {
     e.preventDefault();
     
@@ -81,7 +101,7 @@ membershipForm.addEventListener('submit', function(e) {
         // Basic input sanitization
         if (typeof value === 'string') {
             // Remove potentially dangerous characters
-            value = value.replace(/<script\b[^<]*(?:(?!<\/script>)<[^<]*)*<\/script>/gi, '');
+            value = sanitizeInput(value);
             value = value.replace(/javascript:/gi, '');
             value = value.replace(/on\w+\s*=/gi, '');
             // Trim whitespace
