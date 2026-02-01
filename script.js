@@ -76,8 +76,8 @@ function sanitizeInput(input) {
         current = current.replace(/<script\b[^<]*(?:(?!<\/script>)<[^<]*)*<\/script>/gi, '');
     } while (current !== previous);
 
-    // Remove any remaining <script or </script fragments that could be reassembled
-    current = current.replace(/<\s*\/?\s*script\b/gi, '');
+    // Remove any remaining angle brackets to prevent reconstruction of tags
+    current = current.replace(/[<>]/g, '');
 
     return current;
 }
