@@ -82,7 +82,7 @@ membershipForm.addEventListener('submit', function(e) {
         if (typeof value === 'string') {
             // Remove potentially dangerous characters
             value = value.replace(/<script\b[^<]*(?:(?!<\/script>)<[^<]*)*<\/script>/gi, '');
-            value = value.replace(/javascript:/gi, '');
+            value = value.replace(/(javascript:|data:|vbscript:)/gi, '');
             value = value.replace(/on\w+\s*=/gi, '');
             // Trim whitespace
             value = value.trim();
