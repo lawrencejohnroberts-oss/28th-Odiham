@@ -82,6 +82,15 @@ function sanitizeInput(input) {
     return current;
 }
 
+// Helper to remove potentially dangerous URL schemes from input values
+function removeDangerousUrlSchemes(input) {
+    if (typeof input !== 'string') {
+        return input;
+    }
+    // Remove javascript:, data:, and vbscript: schemes (case-insensitive, allowing optional whitespace before colon)
+    return input.replace(/(javascript|data|vbscript)\s*:/gi, '');
+}
+
 membershipForm.addEventListener('submit', function(e) {
     e.preventDefault();
     
@@ -102,7 +111,7 @@ membershipForm.addEventListener('submit', function(e) {
         if (typeof value === 'string') {
             // Remove potentially dangerous characters
             value = sanitizeInput(value);
-            value = value.replace(/javascript:/gi, '');
+            value = removeDangerousUrlSchemes(value);
             value = value.replace(/on\w+\s*=/gi, '');
             // Trim whitespace
             value = value.trim();
